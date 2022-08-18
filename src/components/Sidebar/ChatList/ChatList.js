@@ -1,17 +1,36 @@
-import React from 'react'
+import database from '../../../Firebase';
+import React, { useState, useEffect } from 'react'
 import ChatListElement from './ChatListElement'
+import { collection, query, onSnapshot } from "firebase/firestore";
+
 
 const ChatList = () => {
-    var chatList = []
-    for(let i=0;i<10;i++) {
-        chatList.push(<ChatListElement/>)
+    const [rooms, setRooms] = useState([]);
+    
+    useEffect(() => {
+        const unsubcribe = onSnapshot(query(collection(database, "rooms")), (querySnapshot) => {
+            let roomData = []
+            querySnapshot.forEach((doc) => {
+                roomData.push(
+                    {
+                        name: doc.data().name,
+                        id: doc.id
+                    }
+                )
+            });
+            setRooms(roomData)
+        })
 
-    }
+        return () => {
+            unsubcribe()
+        } 
+    }, [])
 
     return (
         <div className='sidebar__chatlist'>
-            <ChatListElement addNewChat/>
-            {chatList}
+
+            <ChatListElement addNewChat />
+            { rooms.map((room) => <ChatListElement key={room.id} name={room.name} id={room.id}/>) }
         </div>
     )
 }

@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-width: 10vw;
+    min-width: 8vw;
 }
 
 .sidebar__headerBtns > .MuiSvgIcon-root {
@@ -83,12 +83,24 @@
 
 .sidebar__chatlist-elementInfo > h2 {
     font-size: 16px;
-    margin-bottom: 8px;
+    margin-bottom: 7px;
+}
+
+.sidebar__chatlist-elementInfo > p {
+    font-size: 13px;
+    color: gray;
 }
 
 .sidebar__chatList-header {
     text-align: center;
-    margin-top: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #f6f6f6;
+    cursor: pointer;
+
+}
+
+.sidebar__chatList-header:hover {
+    background-color: #ebebeb;
 }
 
 .sidebar__chatList-header > h2 {
