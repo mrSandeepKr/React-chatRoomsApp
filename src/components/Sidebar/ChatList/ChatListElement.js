@@ -1,9 +1,10 @@
 import React from 'react'
 import RandomAvatar from '../../RandomAvatar'
 import database from '../../../Firebase'
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc } from "firebase/firestore";
+import  {Link } from 'react-router-dom';
 
-const ChatListElement = ({addNewChat, name, id}) => {
+const ChatListElement = ({ addNewChat, name, id }) => {
   const createChat = async () => {
     let roomName = prompt('enter name of the new chat to create')
     if (roomName) {
@@ -11,17 +12,19 @@ const ChatListElement = ({addNewChat, name, id}) => {
         name: roomName
       });
       console.log("Document written with ID: ", docRef.id);
-    } 
+    }
   }
-  
+
   return !addNewChat ? (
-    <div className='sidebar__chatlist-element'>
-      <RandomAvatar/>
-      <div className='sidebar__chatlist-elementInfo'>
-        <h2>{name}</h2>
-        <p>{id}</p>
+    <Link to={`/room/${id}`}>
+      <div className='sidebar__chatlist-element'>
+        <RandomAvatar />
+        <div className='sidebar__chatlist-elementInfo'>
+          <h2>{name}</h2>
+          <p>{id}</p>
+        </div>
       </div>
-    </div>
+    </Link>
   ) : (
     <div onClick={createChat} className='sidebar__chatList-header'>
       <h2>Add New Chat</h2>

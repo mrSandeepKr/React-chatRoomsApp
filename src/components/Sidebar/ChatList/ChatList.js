@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import ChatListElement from './ChatListElement'
 import { collection, query, onSnapshot } from "firebase/firestore";
 
-
 const ChatList = () => {
     const [rooms, setRooms] = useState([]);
     
@@ -28,7 +27,6 @@ const ChatList = () => {
 
     return (
         <div className='sidebar__chatlist'>
-
             <ChatListElement addNewChat />
             { rooms.map((room) => <ChatListElement key={room.id} name={room.name} id={room.id}/>) }
         </div>
