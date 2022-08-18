@@ -1,6 +1,6 @@
 import React from 'react'
 import { IconButton } from '@mui/material'
-import RandomAvatar from '../RandomAvatar';
+import RandomAvatar from '../Common/RandomAvatar';
 import MoreVert from '@mui/icons-material/MoreVert';
 import SearchOutlined from '@mui/icons-material/SearchOutlined';
 import AttachFile from '@mui/icons-material/AttachFile';

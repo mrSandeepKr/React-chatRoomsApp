@@ -1,5 +1,5 @@
 import React from 'react'
-import RandomAvatar from '../../RandomAvatar'
+import RandomAvatar from '../../Common/RandomAvatar'
 import database from '../../../Firebase'
 import { collection, addDoc } from "firebase/firestore";
 import  {Link } from 'react-router-dom';

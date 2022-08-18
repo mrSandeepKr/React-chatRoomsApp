@@ -2,10 +2,21 @@ import './App.css';
 import Sidebar from './components/Sidebar/Sidebar';
 import Chat from './components/Chat/Chat';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from 'react';
+import Login from './components/LogIn/Login';
 
 function App() {
+  const [user, setUser] = useState(null);
+
   return (
     <div className="app">
+      {!user ? <Login setUser = {setUser}/>:<LoggedInUser/>}
+    </div>
+  )
+}
+
+const LoggedInUser = () => {
+  return (
       <div className='app__body'>
         <Router>
           <Sidebar />
@@ -15,18 +26,9 @@ function App() {
                 <Route path=':roomId' element={<Chat />} />
               </Route>
             </Route>
-            <Route
-              path="*"
-              element={
-                <main style={{ padding: "1rem" }}>
-                  <p>There's nothing here!</p>
-                </main>
-              }
-            />
           </Routes>
         </Router>
       </div >
-    </div >
   );
 }
 
