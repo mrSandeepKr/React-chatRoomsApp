@@ -2,15 +2,15 @@ import './App.css';
 import Sidebar from './components/Sidebar/Sidebar';
 import Chat from './components/Chat/Chat';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from 'react';
 import Login from './components/LogIn/Login';
+import { useStateValue } from './StateProvider';
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [{user}] = useStateValue();
 
   return (
     <div className="app">
-      {!user ? <Login setUser = {setUser}/>:<LoggedInUser/>}
+      {!user ? <Login/>:<LoggedInUser/>}
     </div>
   )
 }

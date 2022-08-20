@@ -8,7 +8,6 @@ const ChatFooter = () => {
 
     const sendMessage = (e) => { 
         e.preventDefault()
-        console.log('You types>>>', input)
         setInput('')
     }
 
