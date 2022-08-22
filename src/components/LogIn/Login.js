@@ -2,25 +2,38 @@ import React from 'react'
 import Button from '@mui/material/Button'
 import './login.css'
 import { auth, provider } from '../../Firebase'
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import { useStateValue } from '../../StateProvider';
 import { actionTypes } from '../../reducer';
 
 const Login = () => {
-    const [{}, dispatch] = useStateValue();
-    
+    const [user, dispatch] = useStateValue();
+
     const signIn = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
-
-                dispatch({
-                    type: actionTypes.SET_USER,
-                    user: result.user
-                })
+                console.log(result)
+            }).then(() => {
+                console.log(user)
             }).catch((error) => {
                 alert(error.message)
             })
     }
+
+    onAuthStateChanged(auth, (u) => {
+        if (u) {
+            dispatch({
+                type: actionTypes.SET_USER,
+                user: u
+            })
+        }
+        else {
+            dispatch({
+                type: actionTypes.SET_USER,
+                user: null
+            })
+        }
+    });
 
     return (
         <div className='login'>

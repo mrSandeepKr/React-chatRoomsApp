@@ -60,6 +60,10 @@
     background-color: white;
 }
 
+.sidebar__chatlist > a {
+    text-decoration: none !important;
+}
+
 .sidebar__chatlist::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
@@ -71,6 +75,7 @@
     align-items: center;
     border-bottom: 1px solid #f6f6f6;
     cursor: pointer;
+    color: black;
 }
 
 .sidebar__chatlist-element:hover {
